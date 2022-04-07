@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
+import Start from './components/Start'
+import PokemonList from './components/PokemonList'
+import Team from './components/Team'
 
 function App() {
   const [count, setCount] = useState(0)
