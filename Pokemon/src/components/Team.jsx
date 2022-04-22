@@ -1,25 +1,37 @@
-import {useState} from './react'
+import {useState} from 'react'
+import '../css/team.css'
 
-const Team =({pokemons, teamMembers, setTeamMembers}) => {
-	
-	
-	//en funktion som ändrar på namnet av en pokemon, eller ger ett smeknamn till den
-	const changeName = (team, newName) => {
-		let newNickName = {...pokemons, name: newName}
-		return newNickName;
-	}
+const Team =({teamMembers, setTeamMembers}) => {
 
 	//en funktion som tar bort pokemons från listan
-	const kickOutOfTeam = () => {
-
+	const kickOutOfTeam = (id) => {
+		const currentTeam = teamMembers.filter(pokemon => pokemon.id !== id);
+		setTeamMembers(currentTeam);
 	}
 
 	return(
 		<div className="team-container">
-			
+			<h2>Your Pokémon Team</h2>
+			<ul>
+			{teamMembers< 3 ? (
+				<p className="team-too-small-message">You need at least 3 Pokémons to form a Team!</p>
+			) : teamMembers.map(pokemon => (
+				<li key={pokemon.id}>
+					<img src={pokemon.img} alt={pokemon.name} />
+					<p>{pokemon.name}</p>
+					<p>{"#" + pokemon.id}</p>
+					<ul>
+						{pokemon.abilities.map((ability) => (
+						<li key={ability.name}>
+							{"Abilities: " + ability.name}
+						</li>))}
+					</ul>
+					<button className="kick-out-of-team-button" onClick={() => kickOutOfTeam(pokemon.id)}>Kick out of the Team</button>
+				</li>
+				)
+			)}
+			</ul>
 		</div>
 	)
 }
 export default Team
-
-//eventuellt lägga till en function som sorterar listan enligt namn, eller ability, eller nyaste?
