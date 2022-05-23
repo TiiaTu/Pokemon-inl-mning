@@ -64,12 +64,35 @@ li > p {
 	transition: all .3s ease-in-out;
 }
 
+.give-nickname-btn {
+	display: flex;
+	background-color: white;
+	border-radius: 15px;
+	padding: 0.5em 1em;
+	color: green;
+	border: 1px solid white;
+	justify-content: center;
+}
+
 .remove-button {
 	border-radius: 15px;
-	/* background: linear-gradient(to top right, #f71d1d 0%, #e29649 100%); */
-	background-color:red;
+	background-color: white;
 	border: 1px solid white;
+	color: red;
+	padding: 0.5em;
+}
+
+.remove-button:hover {
+	background-color:red;
 	color: white;
+	transition: all .3s ease-in-out;
+}
+
+.remove-button, .give-nickname-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 1em;
 }
 
 .team-container img {
@@ -81,11 +104,15 @@ li > p {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-
 }
 
 .team-member-card  img {
 	display: flex;
 	position: relative;
 	justify-content: center;
+}
+
+.team-too-small-message {
+	color:red;
+	font-size: 3em;
 }

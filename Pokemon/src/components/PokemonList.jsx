@@ -3,6 +3,7 @@ import './../css/team.css'
 import { useEffect, useState } from "react";
 
 
+
 const PokemonList = ({ pokemons, setPokemons, teamMembers, setTeamMembers, addTeamMember }) => {
 	const [query, setQuery] = useState("");
 	const [pokeInfo, setPokeInfo] = useState([])
@@ -38,12 +39,10 @@ const PokemonList = ({ pokemons, setPokemons, teamMembers, setTeamMembers, addTe
 			/>
 			<ul className="team-member-card">
 				{filteredList.map((pokemon) => (
-					<li key={pokemon.id}>
+					<li key={(pokemon.id)}>
 						<p>{pokemon.name}</p>
 						<p>{"#" + pokemon.id}</p>
 						<img src={pokemon.img} alt={`could not load picture of ${pokemon.name}`} />
-						
-						
 						<button
 							className="add-to-team-btn"
 							onClick={() => {

@@ -1,3 +1,4 @@
+
 import { useState } from 'react'
 import '../css/team.css'
 
@@ -13,44 +14,65 @@ const Team = ({ teamMembers, setTeamMembers }) => {
 	// 	setTeamMembers(currentTeam);
 	// }
 
-	const removeTeamMember = (id) => {
-		console.log("ta bort member")
-		const updatedList = teamMembers.filter(member => member.team_id !== id)
-		setTeamMembers(updatedList)
-		console.log(updatedList)
-	}
+	// const removeTeamMember = (index) => {
+	// 	console.log(index, teamMembers);
+	// 	const team = [
+	// 	  ...teamMembers.slice(0, index),
+	// 	  ...teamMembers.slice(index +1),
+	// 	];
+	// 	console.log(team);
+	// 	setTeamMembers(team);
+	//   };
 
+	// const removeTeamMember = (id) => {
+	// 	console.log("ta bort member")
+	// 	const takeAway = teamMembers.find(member => member.team_id !== id)
+	// 	takeAway.team_id = null;
+
+		
+	// 	arrayRemove(teamMembers, {team_id: null});
+	// 	console.log(takeAway)
+	// 	setTeamMembers(updatedList)
+	// 	console.log(updatedList)
+	// }
 
 	const editName = () => {
-		return window.prompt("Please enter a nickname for your pokémon: ")
+		let nickname = window.prompt("Please enter a nickname for your pokémon: ")
+		setPokemonName(nickname)
 	}
 
-	const handleNickname = (id) => {
-		const newName = editName();
-
+	const removeTeamMember = (id) => {
+		let updateList = teamMembers.filter(p => p.team_id !== id)
+		setTeamMembers(updateList)
+		return teamMembers
 	}
 
+	const handleRemove = (pokemon) => {
+		removeTeamMember(pokemon)
+	}
+    
+    
 	return (
 		<div className="team-container">
 			<div className="team-page-info">
 				<h2>Your Team</h2>
 				<p>{infoText}</p>
 			</div>
-			<input
-				className="search-bar"
-				type="text"
-				placeholder={"Enter nickname here"}
-				onChange={event => setPokemonName(event.target.value)} />
 			<ul className="team-member-card">
-				{teamMembers < 3 ?
+				{teamMembers.length < 3 ?
 					(<p className="team-too-small-message">You need at least 3 Pokémons to form a Team!</p>)
 					: (teamMembers.map((pokemon, i) => (
 						<li key={pokemon.id + pokemon.name + i}>
 							<img src={pokemon.img} />
-							<img src={pokemon.sprites} alt="" />
 							<p>{pokemon.name}</p>
+							<p>{pokemon.nickname}</p>
 							<p>{"#" + pokemon.id}</p>
-							<button className="remove-button" onClick={() => removeTeamMember(pokemon.id)}>Remove</button>
+							<button
+							className="give-nickname-btn"
+							onClick={() => {
+								editName(pokemon)
+							}}>Give nickname</button>
+							<button className="remove-button" onClick={() => handleRemove(pokemon.id)}>Remove</button>
 						</li>
 					)))}
 
@@ -59,30 +81,3 @@ const Team = ({ teamMembers, setTeamMembers }) => {
 	)
 }
 export default Team
-
-
-{/* {/* //med mindre än tre members
-// return(
-// 	<div className="team-container">
-// 		<h2>Your Team</h2>
-// 		<ul>
-// // 		{teamMembers< 3 ? ( */}
-// // 			<p className="team-too-small-message">You need at least 3 Pokémons to form a Team!</p>
-// // 		) : teamMembers.map(pokemon => (
-// // 			<li key={pokemon.id}>
-// // 				<img src={pokemon.img} alt={pokemon.name} />
-// // 				<p>{pokemon.name}</p>
-// // 				<p>{"#" + pokemon.id}</p>
-// // 				{/* <ul>
-// 					{pokemon.abilities.map((ability) => (
-// 					<li key={ability.name}>
-// 						{"Abilities: " + ability.name}
-// 					</li>))}
-// 				</ul> */}
-// 				<button className="kick-out-of-team-button" onClick={() => removeTeamMember(pokemon.id)}>Kick out of the Team</button>
-// 			</li>
-// 			)
-// 		)}
-// 		</ul>
-// 	</div>
-// ) */}

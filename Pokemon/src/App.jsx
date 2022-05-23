@@ -51,7 +51,7 @@ function App() {
 
   const addTeamMember = (pokemon) => {
     let newPokemon = { team_id: "" }
-    newPokemon = { ...pokemon, team_id : "team" + teamMembers.length }
+    newPokemon = { ...pokemon, team_id : "team" + teamMembers.length, nickname: "" }
     setTeamMembers(existingTeam => [...existingTeam, newPokemon])
     return teamMembers
   }
