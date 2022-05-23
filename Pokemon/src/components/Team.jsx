@@ -24,27 +24,15 @@ const Team = ({ teamMembers, setTeamMembers }) => {
 	// 	setTeamMembers(team);
 	//   };
 
-	// const removeTeamMember = (id) => {
-	// 	console.log("ta bort member")
-	// 	const takeAway = teamMembers.find(member => member.team_id !== id)
-	// 	takeAway.team_id = null;
-
-		
-	// 	arrayRemove(teamMembers, {team_id: null});
-	// 	console.log(takeAway)
-	// 	setTeamMembers(updatedList)
-	// 	console.log(updatedList)
-	// }
+	const removeTeamMember = (id) => {
+		console.log("take away member")
+		const kickOut = teamMembers.find(member => member.team_id !== id)
+		kickOut.team_id = null;
+	}
 
 	const editName = () => {
 		let nickname = window.prompt("Please enter a nickname for your pokémon: ")
 		setPokemonName(nickname)
-	}
-
-	const removeTeamMember = (id) => {
-		let updateList = teamMembers.filter(p => p.team_id !== id)
-		setTeamMembers(updateList)
-		return teamMembers
 	}
 
 	const handleRemove = (pokemon) => {
@@ -72,7 +60,7 @@ const Team = ({ teamMembers, setTeamMembers }) => {
 							onClick={() => {
 								editName(pokemon)
 							}}>Give nickname</button>
-							<button className="remove-button" onClick={() => handleRemove(pokemon.id)}>Remove</button>
+							<button className="remove-button" onClick={() => removeTeamMember(pokemon.id)}>Remove</button>
 						</li>
 					)))}
 
