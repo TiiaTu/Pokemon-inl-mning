@@ -5,42 +5,51 @@
   }
   
 
-  .start-page {
+  .main-container {
 	color: rgb(34, 70, 101);
-	background-color: rgb(106, 179, 160);
+	background: linear-gradient(to bottom right, #aee68a 0%, #46cb9e 100%);
 	margin: auto;
 	align-items: center;
 	width: 70%;
 	height: 100vh;
 	position: relative;
 	z-index: -1;
+	padding-top: 10em;
   }
 
 /* =============== navbar ======================= */ 
 
 .navibar {
 	background-color: #0c1c3e;
-	padding: 2em;
+	padding: 1.5em;
 	display: flex;
 	justify-content: center;
 	opacity: 0.9;
 	box-shadow: 0px 0px 20px #0c1c3e;
+	position: fixed;
+	width: 100%;
 } 
 
 .navibar a {
-	color:#74afcb;
+	color:#FFCC00;
 	text-decoration: bold;
 	margin: 0.25em;
 	padding: 0.5em 2em;
 	font-size: 1.5em;
+	border: 1px solid #0c1c3e;
+	border-radius: 30px;
 }
 
 .navibar a:hover {
-	color:#FFCC00;
+	color:rgb(146, 172, 192);
+	border: 1px solid rgb(146, 172, 192);
+	border-radius: 30px;
+	transition: all .3s ease-in-out;
 }
 
 .navibar a.active {
-	border-bottom: 1px solid #FFCC00;
+	border: 1px solid #FFCC00;
+	box-shadow: 0px 0px 20px #071023;
 }
 
 .navibar a:link, navibar:visited {
@@ -50,8 +59,7 @@
 
 .start-img {
 	display:flex;
-	width: 50%;
-	height: 50%;
+	width: 70%;
 	align-items: center;
 	margin: auto;
 	justify-content: center;

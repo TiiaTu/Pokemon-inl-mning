@@ -1,11 +1,50 @@
-.team--container {
+.team-container {
+	width: 70%;
+	height: 100vh;
+	margin: auto;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-top: 10em;
+}
 
+.team-member-card {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
+	border: 1px solid hotpink;
+}
+
+.team-member-card > li{
+	background-color: mediumseagreen;
+	border-radius: 10px;
+	padding: 1em;
+	margin: 1em;
+	list-style-type: none;
 }
 
 .team-too-small-message {
 
 }
 
-.kick-out-of-team-button {
+.remove-button {
+	border-radius: 15px;
+	/* background: linear-gradient(to top right, #f71d1d 0%, #e29649 100%); */
+	background-color:red;
+	border: 1px solid white;
+	color: white;
+}
+
+.team-container img {
+	width: 30%;
+	height: 30%;
+}
+
+.team-page-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	
+	border: 2px solid hotpink;
 }

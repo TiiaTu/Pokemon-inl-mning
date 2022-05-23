@@ -1,28 +1,40 @@
-import './../css/PokemonList.css'
+
+
+
+import './../css/pokemonList.css'
+import './../css/team.css'
 import { useEffect, useState } from "react";
 
-const PokemonList = ({ teamMembers, setTeamMembers }) => {
+const PokemonList = ({ addTeamMember, teamMembers, setTeamMembers }) => {
 	const [query, setQuery] = useState("");
 	const [pokemons, setPokemons] = useState([]);
 
 	//alternativa sätt att lägga till medlemmar i laget
-	const addTeamMember = (pokemon) => {
-		setTeamMembers([...teamMembers, { pokemon }])
-	}
-
-	// const addPokemon = (poke) => {
-	// 	let newPoke = {party_id: ""}
-	// 	newPoke = {...poke, party_id : "partyTeam" + pokeList.length}
-	// 	setPokeList( pokemon => [...pokemon, newPoke])
-	// 	return pokeList
+	// const addTeamMember = (pokemon) => {
+	// 	setTeamMembers([...teamMembers,  pokemon ])
+	// 	alert("You have added " + pokemon.name + " to your team!")
 	// }
 
+	const url = `https://pokeapi.co/api/v2/pokemon?limit=100&offset=0`
 
 	const fetchData = async () => {
 		try {
-			const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=100&offset=0`)
+			const response = await fetch(url)
 			const jsonData = await response.json()
 			console.log("Data from fetch:", jsonData)
+			let pokemonTemp = [];
+			for (let i = 0; i < data.results.length; i++) {
+				await fetch(data.results[i].url).then(async (response) => {
+					const pokeJson = await response.json();
+					const newPokemon = {
+						id: pokeJson.id,
+						name: pokeJson.name,
+						img: pokeJson.sprites.front_default,
+					};
+					pokemonTemp.push(newPokemon);
+				});
+			}
+			setPokemons(pokemonTemp);
 			setPokemons(jsonData.results)
 		}
 
@@ -34,6 +46,8 @@ const PokemonList = ({ teamMembers, setTeamMembers }) => {
 	useEffect(() => {
 		fetchData();
 	}, []);
+
+
 
 	//sätter input till lower case
 	const inputHandler = (input) => {
@@ -55,6 +69,7 @@ const PokemonList = ({ teamMembers, setTeamMembers }) => {
 		}
 	})
 
+
 	//lägger till Pokemon i teamet och ger möjlighet att ange ett smeknamn
 	// const addToTeam = (pokemon) => {
 	// 	const pokeNickname = window.prompt("Please enter a nickname for your pokémon: ")
@@ -69,7 +84,7 @@ const PokemonList = ({ teamMembers, setTeamMembers }) => {
 	// }
 
 	return (
-		<div className="list-container">
+		<div className="team-container">
 			<h1>List of available Pokémons</h1>
 			<input
 				className="search-bar"
@@ -77,19 +92,17 @@ const PokemonList = ({ teamMembers, setTeamMembers }) => {
 				type="text"
 				onChange={inputHandler}
 			/>
-			<ul className="available-pokemons">
-				{filteredList.map((pokemon) => (
-					<li key={pokemon.id}>
-						<img src={pokemon.img} alt={pokemon.name} />
+			<ul className="team-member-card">
+				{filteredList.map((pokemon, i) => (
+					<li key={pokemon.id + i}>
+						<img src={pokemon.img} alt={`could not load picture of ${pokemon.name}`} />
 						<p>{pokemon.name}</p>
 						<p>{"#" + pokemon.id}</p>
-						{/* {pokemon.abilities.map((ability) => (
-								<ul key={ability.ability.name}>
-									<li>{"Abilities: " + ability.ability.name}</li>
-								</ul>))} */}
 						<button
 							className="add-to-team-btn"
-							onClick={() => addTeamMember(pokemon.name)}>Add to team</button>
+							onClick={() => addTeamMember(pokemons)}>Add to team
+						</button>
+
 					</li>))}
 			</ul>
 		</div>
