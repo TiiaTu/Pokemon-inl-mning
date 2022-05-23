@@ -1,6 +1,6 @@
 .team-container {
 	width: 70%;
-	height: 100vh;
+	min-height: 100vh;
 	margin: auto;
 	background-color: white;
 	display: flex;
@@ -9,23 +9,59 @@
 	padding-top: 10em;
 }
 
+.team-container > h1, .team-page-info > h2 {
+	font-size: 2em;
+	color: #0c1c3e;
+	font-family: 'Roboto', sans-serif;
+}
+
+.team-page-info > p {
+	width: 70%;
+	text-align: center;
+	color: #0c1c3e;
+}
+
 .team-member-card {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
-	border: 1px solid hotpink;
+	width: 90%;	
 }
 
 .team-member-card > li{
-	background-color: mediumseagreen;
+	display: flex;
+	background: linear-gradient(to bottom right, #aee68a 0%, #46cb9e 100%);
 	border-radius: 10px;
-	padding: 1em;
+	padding: 2em;
 	margin: 1em;
 	list-style-type: none;
+	align-items: center;
+	flex-direction: column;
 }
 
-.team-too-small-message {
+li > p {
+	font-size: 1.5em;
+	font-weight: bold;
+	color: #0c1c3e;
+	text-align: center;
+}
 
+.add-to-team-btn {
+	display: flex;
+	background-color: white;
+	border-radius: 10px;
+	padding: 0.5em 1em;
+	color: green;
+	border: 1px solid white;
+	justify-content: center;
+}
+
+.add-to-team-btn:hover {
+	background-color: green;
+	border-radius: 10px;
+	padding: 0.5em 1em;
+	color: white;
+	transition: all .3s ease-in-out;
 }
 
 .remove-button {
@@ -37,14 +73,19 @@
 }
 
 .team-container img {
-	width: 30%;
-	height: 30%;
+	width: 50%;
+	
 }
 
 .team-page-info {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	
-	border: 2px solid hotpink;
+
+}
+
+.team-member-card  img {
+	display: flex;
+	position: relative;
+	justify-content: center;
 }
