@@ -28,6 +28,7 @@
 	box-shadow: 0px 0px 20px #0c1c3e;
 	position: fixed;
 	width: 100%;
+	z-index: 1;
 } 
 
 .navibar a {

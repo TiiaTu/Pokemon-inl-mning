@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import './../css/startpage.css'
 
 const Start = () => {
 
@@ -12,7 +13,6 @@ const Start = () => {
 					<div className="text-box">
 						<h1>Welcome to Pokémon Team Builder!</h1>
 						<p>Build your own Pokémon Team</p>
-						<button onClick={useNavigate}>Get Started</button>
 					</div>
 				</div>
 

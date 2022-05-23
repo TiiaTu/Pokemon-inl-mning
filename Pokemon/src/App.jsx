@@ -4,17 +4,55 @@ import './App.css'
 import Start from './components/Start'
 import PokemonList from './components/PokemonList'
 import Team from './components/Team'
-import startpage from './css/startpage.css'
 
 function App() {
+  const [pokemons, setPokemons] = useState([]);
   const [teamMembers, setTeamMembers] = useState([])
 
 
+  const url = `https://pokeapi.co/api/v2/pokemon?limit=100&offset=0`
+
+  //hämtar pokemons från API, kodinspiration från Josefin https://github.com/NurseJosie/poke-manager-react/blob/master/src/components/Pokedex.jsx
+  const fetchData = async () => {
+    try {
+      const response = await fetch(url)
+      const jsonData = await response.json()
+      console.log("Data from fetch:", jsonData)
+
+      let pokemonTemp = [];
+      for (let i = 0; i < jsonData.results.length; i++) {
+        await fetch(jsonData.results[i].url)
+          .then(async (response) => {
+            const pokeJson = await response.json();
+
+            const newPokemon = {
+              id: pokeJson.id,
+              name: pokeJson.name,
+              img: pokeJson.sprites.front_default,
+            };
+            pokemonTemp.push(newPokemon);
+          });
+      }
+      setPokemons(pokemonTemp);
+      console.log(pokemons)
+    }
+    //   setPokemons(jsonData.results)
+    // }
+
+    catch {
+      console.log("error")
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
   const addTeamMember = (pokemon) => {
-    let newPokemon = { team_id: '' }
-    newPokemon = { ...pokemon, team_id: 'team' + teamMembers.length }
-    setTeamMembers(oldTeam => [...oldTeam, newPokemon])
-    alert(`You have added ${pokemon.name} to your team!`)
+    let newPokemon = { team_id: "" }
+    newPokemon = { ...pokemon, team_id : "team" + teamMembers.length }
+    setTeamMembers(existingTeam => [...existingTeam, newPokemon])
     return teamMembers
   }
 
@@ -33,9 +71,10 @@ function App() {
             <Route path="/" element={<Start />}></Route>
             <Route path="/pokemons" element={
               <PokemonList
-                teamMembers={teamMembers}
-                setTeamMembers={setTeamMembers}
-                addTeamMember={addTeamMember} />}>
+                addTeamMember={addTeamMember}
+                pokemons={pokemons}
+                setPokemons={setPokemons}
+              />}>
             </Route>
             <Route path="/my-team" element={
               <Team
