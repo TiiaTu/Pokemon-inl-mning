@@ -74,6 +74,15 @@ li > p {
 	justify-content: center;
 }
 
+.give-nickname-btn:hover {
+	display: flex;
+	background-color: green;
+	color: white;
+	border: 1px solid white;
+	justify-content: center;
+	transition: all .3s ease-in-out;
+}
+
 .remove-button {
 	border-radius: 15px;
 	background-color: white;

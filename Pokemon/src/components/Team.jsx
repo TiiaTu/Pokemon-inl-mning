@@ -53,7 +53,7 @@ const Team = ({ teamMembers, setTeamMembers }) => {
 						<li key={pokemon.id + pokemon.name + i}>
 							<img src={pokemon.img} />
 							<p>{pokemon.name}</p>
-							<p>{pokemon.nickname}</p>
+							<p>{pokemonName}</p>
 							<p>{"#" + pokemon.id}</p>
 							<button
 							className="give-nickname-btn"
