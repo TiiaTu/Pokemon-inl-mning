@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 
 const PokemonList = ({ pokemons, setPokemons, teamMembers, setTeamMembers, addTeamMember }) => {
 	const [query, setQuery] = useState("");
-	const [pokeInfo, setPokeInfo] = useState([])
 
 	//sätter input till lower case
 	const inputHandler = (input) => {
@@ -38,7 +37,8 @@ const PokemonList = ({ pokemons, setPokemons, teamMembers, setTeamMembers, addTe
 				onChange={inputHandler}
 			/>
 			<ul className="team-member-card">
-				{filteredList.map((pokemon) => (
+				{!filteredList? <p>No results</p> :
+				(filteredList.map((pokemon) => (
 					<li key={(pokemon.id)}>
 						<p>{pokemon.name}</p>
 						<p>{"#" + pokemon.id}</p>
@@ -50,7 +50,7 @@ const PokemonList = ({ pokemons, setPokemons, teamMembers, setTeamMembers, addTe
 								alert(`${pokemon.name} added to your team!`)
 							}}>Add to team
 						</button>
-					</li>))}
+					</li>)))}
 			</ul>
 		</div>
 	)
