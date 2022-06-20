@@ -1,6 +1,6 @@
-import './../css/pokemonList.css'
-import './../css/team.css'
+import '../css/pokemonList.css'
 import { useEffect, useState } from "react";
+import '../css/test.css'
 
 
 
@@ -28,7 +28,7 @@ const PokemonList = ({ pokemons, setPokemons, teamMembers, setTeamMembers, addTe
 	})
 
 	return (
-		<div className="team-container">
+		<div className="pokemon-container">
 			<h1>List of available Pokémons</h1>
 			<input
 				className="search-bar"
@@ -36,21 +36,23 @@ const PokemonList = ({ pokemons, setPokemons, teamMembers, setTeamMembers, addTe
 				type="text"
 				onChange={inputHandler}
 			/>
-			<ul className="team-member-card">
-				{!filteredList? <p>No results</p> :
+			<ul className="pokemon-card">
+				{filteredList?
 				(filteredList.map((pokemon) => (
 					<li key={(pokemon.id)}>
+						<img src={pokemon.img} alt={`could not load picture of ${pokemon.name}`} />
 						<p>{pokemon.name}</p>
 						<p>{"#" + pokemon.id}</p>
-						<img src={pokemon.img} alt={`could not load picture of ${pokemon.name}`} />
+						
 						<button
 							className="add-to-team-btn"
 							onClick={() => {
 								addTeamMember(pokemon)
 								alert(`${pokemon.name} added to your team!`)
-							}}>Add to team
+							}}>Catch
 						</button>
-					</li>)))}
+					</li>))) : <p>No results</p>}
+					
 			</ul>
 		</div>
 	)
