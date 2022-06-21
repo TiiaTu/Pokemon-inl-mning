@@ -60,8 +60,7 @@ const Team = ({ teamMembers, setTeamMembers }) => {
 							</p></div>)
 					: (teamMembers.map((pokemon, i) => (
 						<li key={pokemon.new_id + pokemon.name + i}>
-							<img src={pokemon.img} />
-							<p>{"#" + pokemon.new_id}</p>
+							<img src={pokemon.team_img} />
 							<p>{pokemon.name}</p>
 							<p>{pokemon.nickname}</p>
 							<button

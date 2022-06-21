@@ -1,6 +1,5 @@
 import '../css/pokemonList.css'
 import { useEffect, useState } from "react";
-import '../css/test.css'
 
 
 
@@ -37,22 +36,40 @@ const PokemonList = ({ pokemons, setPokemons, teamMembers, setTeamMembers, addTe
 				onChange={inputHandler}
 			/>
 			<ul className="pokemon-card">
-				{filteredList?
-				(filteredList.map((pokemon) => (
-					<li key={(pokemon.id)}>
-						<img src={pokemon.img} alt={`could not load picture of ${pokemon.name}`} />
-						<p>{pokemon.name}</p>
-						<p>{"#" + pokemon.id}</p>
-						
-						<button
-							className="add-to-team-btn"
-							onClick={() => {
-								addTeamMember(pokemon)
-								alert(`${pokemon.name} added to your team!`)
-							}}>Catch
-						</button>
-					</li>))) : <p>No results</p>}
-					
+				{filteredList ?
+					(filteredList.map((pokemon) => (
+
+						<li key={(pokemon.id)}>
+							<img src={pokemon.img} alt={`could not load picture of ${pokemon.name}`} />
+							<p>{pokemon.name}</p>
+							<p>{"#" + pokemon.id}</p>
+
+							<div className="info-box">
+								<div className="pokemon-type">
+									<p>Type</p>
+									{pokemon.types.map((type) => (
+										<ul key={type.type.name}>
+											<li>{type.type.name}</li>
+										</ul>))}
+								</div>
+
+								<div className="abilities">
+									<p>Abilities</p>
+									{pokemon.abilities.map((ability) => (
+										<ul key={ability.ability.name}>
+											<li>{ability.ability.name}</li>
+										</ul>))}
+								</div>
+							</div>
+							<button
+								className="add-to-team-btn"
+								onClick={() => {
+									addTeamMember(pokemon)
+									alert(`${pokemon.name} added to your team!`)
+								}}>Catch
+							</button>
+						</li>))) : <p>No results</p>}
+
 			</ul>
 		</div>
 	)

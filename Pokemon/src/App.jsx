@@ -28,7 +28,10 @@ function App() {
             const newPokemon = {
               id: pokeJson.id,
               name: pokeJson.name,
-              img: pokeJson.sprites.front_default,
+              img: pokeJson.sprites.other.home.front_default,
+              team_img: pokeJson.sprites.front_default,
+              abilities: pokeJson.abilities,
+              types: pokeJson.types,
             };
             pokemonTemp.push(newPokemon);
           });

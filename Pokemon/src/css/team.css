@@ -47,7 +47,7 @@ li > p {
 }
 
 li p:nth-child(2) {
-	color: hotpink;
+	color: white;
 }
 
 .add-to-team-btn {
@@ -126,8 +126,12 @@ li p:nth-child(2) {
 }
 
 .team-too-small-message {
+	position: absolute;
+	width: 50vw;
+	text-align: center;
+	padding: 0;
 	color:red;
-	font-size: 3em;
+	font-size: 2em;
 }
 
 .no-pokemons-found {
