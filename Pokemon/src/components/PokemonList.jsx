@@ -1,6 +1,5 @@
 import '../css/pokemonList.css'
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
 
 
 const PokemonList = ({ pokemons, addTeamMember }) => {
@@ -69,7 +68,6 @@ const PokemonList = ({ pokemons, addTeamMember }) => {
 								}}>Catch
 							</button>
 						</li>))) : <p>No results</p>}
-
 			</ul>
 		</div>
 	)

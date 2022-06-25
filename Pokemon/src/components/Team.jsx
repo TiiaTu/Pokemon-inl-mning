@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 import '../css/team.css'
 
 const Team = ({ teamMembers, setTeamMembers }) => {
@@ -72,7 +72,7 @@ const Team = ({ teamMembers, setTeamMembers }) => {
 			</ul>
 			{<button
 				onClick={() => setTeamMembers([])
-				}>Swipe out the whole team</button>}
+				}>Wipe out the whole team</button>}
 		</div>
 	)
 }
