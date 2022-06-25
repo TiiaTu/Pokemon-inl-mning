@@ -14,8 +14,12 @@
 	border-radius: 10px;
 	width: 30%;
 	padding: 0.5em 1em;
-	color:#46cb9e;
+	margin-bottom: 2em;
 	background-color: rgba(230, 227, 227, 0.674);
+}
+
+.search-bar:hover {
+	background-color: white;
 }
 
 .pokemon-container {
@@ -45,12 +49,11 @@
 	background: linear-gradient(to bottom right, #aee68a 0%, #46cb9e 100%);
 	border-radius: 10px;
 	padding: 0;
-	margin: 0.75em;
+	margin: 1.25em;
 	list-style-type: none;
 	flex-direction: column;
 	position: relative;
 	box-shadow: 5px 5px 10px #0c1c3e;
-	
 }
 
 .pokemon-card > li > p {
@@ -99,14 +102,12 @@
 	justify-content: flex;
 	color: black;
 	width: 40%;
-	border: 1px solid #318d6f;
-	background-color: #318d6f;
-	opacity: 80%;
+	background-color: #42c096;
+	opacity: 70%;
 	border-radius: 5px;
 	margin: 5px;
 	width: 100%;
 	margin: 1em 0.25em;
-	
 }
 
 .abilities > p, .pokemon-type > p {

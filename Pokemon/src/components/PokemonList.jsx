@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 
 
-const PokemonList = ({ pokemons, setPokemons, teamMembers, setTeamMembers, addTeamMember }) => {
+const PokemonList = ({ pokemons, addTeamMember }) => {
 	const [query, setQuery] = useState("");
 
 	//sätter input till lower case

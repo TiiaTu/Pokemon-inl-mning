@@ -75,6 +75,10 @@
 	align-items: center;
 }
 
+.text-box > h1 {
+	margin: 0;
+}
+
 /* .aside-left {
 	grid-area: aside;
 	background-color: white;

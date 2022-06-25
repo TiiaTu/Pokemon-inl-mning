@@ -10,14 +10,14 @@ function App() {
   const [teamMembers, setTeamMembers] = useState([]) //uppdaterar variabeln teamMembers när state ändras
 
 
-  const url = `https://pokeapi.co/api/v2/pokemon?limit=250&offset=0`
+  const url = `https://pokeapi.co/api/v2/pokemon?limit=150&offset=0`
 
   //hämtar pokemons från API, kodinspiration för fetchData-funktionen från Josefin https://github.com/NurseJosie/poke-manager-react/blob/master/src/components/Pokedex.jsx
   const fetchData = async () => {
     try {
       const response = await fetch(url)
       const jsonData = await response.json()
-      console.log("Data from fetch:", jsonData)
+      // console.log("Data from fetch:", jsonData)
 
       let pokemonTemp = [];
       for (let i = 0; i < jsonData.results.length; i++) {
@@ -37,7 +37,6 @@ function App() {
           });
       }
       setPokemons(pokemonTemp);
-      console.log(pokemons)
     }
     catch {
       console.log("error")
@@ -59,7 +58,6 @@ function App() {
     let newMember = { new_id: ""}
     newMember = { ...pokemon, new_id : pokemon.name.substring(0,3) + idGenerator(), nickname: null}
     setTeamMembers(existingTeam => [...existingTeam, newMember])
-    console.log(teamMembers)
     return teamMembers
   }
 
