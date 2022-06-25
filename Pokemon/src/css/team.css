@@ -139,3 +139,13 @@ li p:nth-child(2) {
 	font-size: 1.5em;
 	text-align: center;
 }
+
+.team-container > button {
+	position: absolute;
+	background-color:red;
+	color: white;
+	border-radius: 15px;
+	border: 1px solid white;
+	padding: 0.5em;
+	bottom: 1em;
+}
