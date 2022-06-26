@@ -2,7 +2,7 @@ import '../css/pokemonList.css'
 import { useState } from "react";
 
 
-const PokemonList = ({ pokemons, addTeamMember }) => {
+const PokemonList = ({ isLoading, setIsLoading, pokemons, addTeamMember }) => {
 	const [query, setQuery] = useState("");
 
 	//sätter input till lower case
@@ -25,6 +25,7 @@ const PokemonList = ({ pokemons, addTeamMember }) => {
 		}
 	})
 
+
 	return (
 		<div className="pokemon-container">
 			<h1>List of available Pokémons</h1>
@@ -34,8 +35,11 @@ const PokemonList = ({ pokemons, addTeamMember }) => {
 				type="text"
 				onChange={inputHandler}
 			/>
+			{isLoading == true ? <p className="loading">LOADING</p>:
+			
 			<ul className="pokemon-card">
-				{filteredList ?
+			{filteredList == false ?  <p className="loading">No results</p> : 
+				
 					(filteredList.map((pokemon) => (
 
 						<li key={(pokemon.id)}>
@@ -67,8 +71,8 @@ const PokemonList = ({ pokemons, addTeamMember }) => {
 									alert(`${pokemon.name} added to your team!`)
 								}}>Catch
 							</button>
-						</li>))) : <p>No results</p>}
-			</ul>
+						</li>)))  }
+			</ul>}
 		</div>
 	)
 }
