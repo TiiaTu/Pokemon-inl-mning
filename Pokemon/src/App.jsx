@@ -8,6 +8,7 @@ import Team from './components/Team'
 function App() {
   const [pokemons, setPokemons] = useState([]); //håller koll på pokemons
   const [teamMembers, setTeamMembers] = useState([]) //uppdaterar variabeln teamMembers när state ändras
+  const [isLoading, setIsLoading] = useState(false);
 
 
   const url = `https://pokeapi.co/api/v2/pokemon?limit=150&offset=0`
@@ -15,6 +16,7 @@ function App() {
   //hämtar pokemons från API, kodinspiration för fetchData-funktionen från Josefin https://github.com/NurseJosie/poke-manager-react/blob/master/src/components/Pokedex.jsx
   const fetchData = async () => {
     try {
+      setIsLoading(true)
       const response = await fetch(url)
       const jsonData = await response.json()
       // console.log("Data from fetch:", jsonData)
@@ -37,6 +39,7 @@ function App() {
           });
       }
       setPokemons(pokemonTemp);
+      setIsLoading(false);
     }
     catch {
       console.log("error")
@@ -76,6 +79,8 @@ function App() {
             <Route path="/" element={<Start />}></Route>
             <Route path="/pokemons" element={
               <PokemonList
+                isLoading = {isLoading}
+                setIsLoading={setIsLoading}
                 addTeamMember={addTeamMember}
                 pokemons={pokemons}
                 setPokemons={setPokemons}

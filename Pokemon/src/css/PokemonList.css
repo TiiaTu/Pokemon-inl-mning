@@ -136,6 +136,14 @@
 	flex-direction: row;
 }
 
+.loading {
+	position: relative;
+	color: red;
+	height: 30px;
+	margin: auto;
+	font-size: larger;
+}
+
 /* ----button---- */
 
 .add-to-team-btn {
