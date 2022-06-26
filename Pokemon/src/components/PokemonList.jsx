@@ -1,12 +1,9 @@
-import './../css/pokemonList.css'
-import './../css/team.css'
-import { useEffect, useState } from "react";
+import '../css/pokemonList.css'
+import { useState } from "react";
 
 
-
-const PokemonList = ({ pokemons, setPokemons, teamMembers, setTeamMembers, addTeamMember }) => {
+const PokemonList = ({ isLoading, setIsLoading, pokemons, addTeamMember }) => {
 	const [query, setQuery] = useState("");
-	const [pokeInfo, setPokeInfo] = useState([])
 
 	//sätter input till lower case
 	const inputHandler = (input) => {
@@ -28,8 +25,9 @@ const PokemonList = ({ pokemons, setPokemons, teamMembers, setTeamMembers, addTe
 		}
 	})
 
+
 	return (
-		<div className="team-container">
+		<div className="pokemon-container">
 			<h1>List of available Pokémons</h1>
 			<input
 				className="search-bar"
@@ -37,21 +35,44 @@ const PokemonList = ({ pokemons, setPokemons, teamMembers, setTeamMembers, addTe
 				type="text"
 				onChange={inputHandler}
 			/>
-			<ul className="team-member-card">
-				{filteredList.map((pokemon) => (
-					<li key={(pokemon.id)}>
-						<p>{pokemon.name}</p>
-						<p>{"#" + pokemon.id}</p>
-						<img src={pokemon.img} alt={`could not load picture of ${pokemon.name}`} />
-						<button
-							className="add-to-team-btn"
-							onClick={() => {
-								addTeamMember(pokemon)
-								alert(`${pokemon.name} added to your team!`)
-							}}>Add to team
-						</button>
-					</li>))}
-			</ul>
+			{isLoading == true ? <p className="loading">LOADING</p>:
+			
+			<ul className="pokemon-card">
+			{filteredList == false ?  <p className="loading">No results</p> : 
+				
+					(filteredList.map((pokemon) => (
+
+						<li key={(pokemon.id)}>
+							<img src={pokemon.img} alt={`could not load picture of ${pokemon.name}`} />
+							<p>{pokemon.name}</p>
+							<p>{"#" + pokemon.id}</p>
+
+							<div className="info-box">
+								<div className="pokemon-type">
+									<p>Type</p>
+									{pokemon.types.map((type) => (
+										<ul key={type.type.name}>
+											<li>{type.type.name}</li>
+										</ul>))}
+								</div>
+
+								<div className="abilities">
+									<p>Abilities</p>
+									{pokemon.abilities.map((ability) => (
+										<ul key={ability.ability.name}>
+											<li>{ability.ability.name}</li>
+										</ul>))}
+								</div>
+							</div>
+							<button
+								className="add-to-team-btn"
+								onClick={() => {
+									addTeamMember(pokemon)
+									alert(`${pokemon.name} added to your team!`)
+								}}>Catch
+							</button>
+						</li>)))  }
+			</ul>}
 		</div>
 	)
 }

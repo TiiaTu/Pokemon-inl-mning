@@ -26,6 +26,7 @@
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
 	width: 90%;	
+	padding: 0;
 }
 
 .team-member-card > li{
@@ -37,14 +38,88 @@
 	list-style-type: none;
 	align-items: center;
 	flex-direction: column;
+	box-shadow: 5px 5px 10px #0c1c3e;
 }
 
 li > p {
 	font-size: 1.5em;
 	font-weight: bold;
-	color: #0c1c3e;
+	color: #1d8471;
+	text-align: center;
+	margin: 0.25em;
+}
+
+li p:nth-child(2) {
+	color: white;
+}
+
+.team-container img {
+	width: 50%;
+}
+
+.team-page-info {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.team-page-info > h2 {
+	font-size: 2em;
+	color: rgb(34, 70, 101);
+	margin: 0;
+}
+
+.team-member-card  img {
+	display: flex;
+	position: relative;
+	justify-content: center;
+}
+
+.team-too-small-message {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	position: absolute;
+	width: 60vw;
+	text-align: center;
+	padding: 0;
+	color:red;
+	font-size: 2em;
+	margin-top: 0;
+}
+
+.team-too-small-message > li  p {
+	font-size: 0.5em;
+	margin-bottom: 0;
+}
+
+.team-too-small-message > li > img {
+	height: 3em;
+	width: 3em;
+	display: flex;
+	margin: auto;
+}
+
+.team-too-small-message > li  {
+	background-color: lightgrey;
+	width: 25%;
+	height: 35%;
+	list-style-type: none;
+	border: 1px solid grey;
+	border-radius:10px;
+	margin: auto;
+	margin-top:1em;
+	opacity: 0.5;
+	box-shadow: 5px 5px 10px #0c1c3e;
+}
+
+.no-pokemons-found {
+	color: red;
+	font-size: 1.5em;
 	text-align: center;
 }
+
+/* -----BUTTONS---------------------------*/
 
 .add-to-team-btn {
 	display: flex;
@@ -104,24 +179,13 @@ li > p {
 	margin: 1em;
 }
 
-.team-container img {
-	width: 50%;
-	
+.team-container > button {
+	position: fixed;
+	background-color:red;
+	color: white;
+	border-radius: 15px;
+	border: 1px solid yellow;
+	padding: 0.5em;
+	bottom: 1em;
 }
 
-.team-page-info {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.team-member-card  img {
-	display: flex;
-	position: relative;
-	justify-content: center;
-}
-
-.team-too-small-message {
-	color:red;
-	font-size: 3em;
-}

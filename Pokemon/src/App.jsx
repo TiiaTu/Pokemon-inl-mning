@@ -6,18 +6,20 @@ import PokemonList from './components/PokemonList'
 import Team from './components/Team'
 
 function App() {
-  const [pokemons, setPokemons] = useState([]);
-  const [teamMembers, setTeamMembers] = useState([])
+  const [pokemons, setPokemons] = useState([]); //håller koll på pokemons
+  const [teamMembers, setTeamMembers] = useState([]) //uppdaterar variabeln teamMembers när state ändras
+  const [isLoading, setIsLoading] = useState(false);
 
 
-  const url = `https://pokeapi.co/api/v2/pokemon?limit=100&offset=0`
+  const url = `https://pokeapi.co/api/v2/pokemon?limit=150&offset=0`
 
-  //hämtar pokemons från API, kodinspiration från Josefin https://github.com/NurseJosie/poke-manager-react/blob/master/src/components/Pokedex.jsx
+  //hämtar pokemons från API, kodinspiration för fetchData-funktionen från Josefin https://github.com/NurseJosie/poke-manager-react/blob/master/src/components/Pokedex.jsx
   const fetchData = async () => {
     try {
+      setIsLoading(true)
       const response = await fetch(url)
       const jsonData = await response.json()
-      console.log("Data from fetch:", jsonData)
+      // console.log("Data from fetch:", jsonData)
 
       let pokemonTemp = [];
       for (let i = 0; i < jsonData.results.length; i++) {
@@ -28,17 +30,17 @@ function App() {
             const newPokemon = {
               id: pokeJson.id,
               name: pokeJson.name,
-              img: pokeJson.sprites.front_default,
+              img: pokeJson.sprites.other.home.front_default,
+              team_img: pokeJson.sprites.front_default,
+              abilities: pokeJson.abilities,
+              types: pokeJson.types,
             };
             pokemonTemp.push(newPokemon);
           });
       }
       setPokemons(pokemonTemp);
-      console.log(pokemons)
+      setIsLoading(false);
     }
-    //   setPokemons(jsonData.results)
-    // }
-
     catch {
       console.log("error")
     }
@@ -46,13 +48,19 @@ function App() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, []); //när [] anges som en parameter så körs funktionen bara en gång
 
+
+  //genererar ett tresiffrigt id-nummer för varje pokemon när addTeamMember anropas
+  const idGenerator = () => {
+    let id = Math.floor(Math.random() * 1000) + 1;
+    return id;
+  }
 
   const addTeamMember = (pokemon) => {
-    let newPokemon = { team_id: "" }
-    newPokemon = { ...pokemon, team_id : "team" + teamMembers.length, nickname: "" }
-    setTeamMembers(existingTeam => [...existingTeam, newPokemon])
+    let newMember = { new_id: ""}
+    newMember = { ...pokemon, new_id : pokemon.name.substring(0,3) + idGenerator(), nickname: null}
+    setTeamMembers(existingTeam => [...existingTeam, newMember])
     return teamMembers
   }
 
@@ -71,6 +79,8 @@ function App() {
             <Route path="/" element={<Start />}></Route>
             <Route path="/pokemons" element={
               <PokemonList
+                isLoading = {isLoading}
+                setIsLoading={setIsLoading}
                 addTeamMember={addTeamMember}
                 pokemons={pokemons}
                 setPokemons={setPokemons}
